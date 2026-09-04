@@ -878,7 +878,509 @@ img {
 
     color: rgba(0, 0, 0, 0.12);
 }
+/* =========================================================
+   QUALIFICATION SECTION — MATCH PORTFOLIO THEME
+========================================================= */
 
+.qualification {
+    position: relative;
+    background: #ffffff;
+    color: #111111;
+    padding: 140px 8%;
+    overflow: hidden;
+}
+
+
+/* Section title */
+
+.qualification .section-title h2 span {
+    font-style: italic;
+}
+
+
+/* =========================================================
+   QUALIFICATION HEADING
+========================================================= */
+
+.qualification-heading {
+    display: flex;
+    align-items: flex-start;
+    gap: 25px;
+    margin: 100px 0 45px;
+}
+
+.qualification-heading > span {
+    font-family: "Anton", sans-serif;
+    font-size: 20px;
+    line-height: 1;
+    color: #111111;
+    opacity: 0.4;
+}
+
+.qualification-heading div p {
+    font-size: 11px;
+    letter-spacing: 3px;
+    margin: 0 0 8px;
+    font-weight: 600;
+    color: #111111;
+}
+
+.qualification-heading div h3 {
+    font-family: "Anton", sans-serif;
+    font-size: 42px;
+    letter-spacing: 1px;
+    margin: 0;
+    font-weight: 400;
+    color: #111111;
+}
+
+
+/* =========================================================
+   EDUCATION
+========================================================= */
+
+.education-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.education-card {
+    position: relative;
+    min-height: 300px;
+    padding: 35px;
+    background: #ffffff;
+    color: #111111;
+    border: 1px solid #111111;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+
+/* Yellow accent */
+
+.education-card::before {
+    content: "";
+    position: absolute;
+
+    width: 7px;
+    height: 100%;
+
+    background: #f5c400;
+
+    left: 0;
+    top: 0;
+
+    transform: scaleY(0);
+    transform-origin: bottom;
+
+    transition: transform 0.4s ease;
+}
+
+.education-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 12px 12px 0 #111111;
+}
+
+.education-card:hover::before {
+    transform: scaleY(1);
+}
+
+
+.education-year {
+    font-family: "Anton", sans-serif;
+    font-size: 48px;
+    line-height: 1;
+
+    color: #111111;
+    opacity: 0.12;
+}
+
+.education-content small {
+    display: block;
+
+    font-size: 10px;
+    letter-spacing: 2px;
+    font-weight: 600;
+
+    color: #111111;
+
+    margin-bottom: 12px;
+}
+
+.education-content h3 {
+    font-size: 24px;
+    margin: 0 0 12px;
+    font-weight: 600;
+    color: #111111;
+}
+
+.education-course {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #111111;
+}
+
+.education-content p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #111111;
+}
+
+.education-content span {
+    display: block;
+
+    margin-top: 15px;
+
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    color: #111111;
+    opacity: 0.55;
+}
+
+
+/* =========================================================
+   CERTIFICATES
+========================================================= */
+
+.certificate-heading {
+    margin-top: 130px;
+}
+
+.certificates-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 35px;
+}
+
+.certificate-card {
+    background: #ffffff;
+    color: #111111;
+
+    border: 1px solid #111111;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+.certificate-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 12px 12px 0 #111111;
+}
+
+
+/* =========================================================
+   CERTIFICATE IMAGE
+========================================================= */
+
+.certificate-image {
+    position: relative;
+
+    width: 100%;
+    height: 330px;
+
+    background: #f5f5f5;
+
+    overflow: hidden;
+}
+
+.certificate-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: transform 0.6s ease;
+}
+
+.certificate-card:hover .certificate-image img {
+    transform: scale(1.05);
+}
+
+
+/* =========================================================
+   CERTIFICATE BUTTON
+========================================================= */
+
+.certificate-view {
+    position: absolute;
+
+    left: 20px;
+    bottom: 20px;
+
+    border: none;
+
+    background: #111111;
+    color: #ffffff;
+
+    padding: 14px 20px;
+
+    font-family: "Poppins", sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+.certificate-view:hover {
+    background: #f5c400;
+    color: #111111;
+
+    transform: translateY(-3px);
+}
+
+
+/* =========================================================
+   CERTIFICATE INFORMATION
+========================================================= */
+
+.certificate-content {
+    padding: 30px;
+    background: #ffffff;
+}
+
+.certificate-content small {
+    font-size: 10px;
+    letter-spacing: 2px;
+    font-weight: 600;
+
+    color: #111111;
+    opacity: 0.6;
+}
+
+.certificate-content h3 {
+    margin: 12px 0 10px;
+
+    font-size: 25px;
+    color: #111111;
+}
+
+.certificate-content p {
+    font-size: 13px;
+    line-height: 1.8;
+
+    color: #111111;
+    opacity: 0.7;
+
+    max-width: 500px;
+}
+
+.certificate-content span {
+    display: inline-block;
+
+    margin-top: 15px;
+
+    font-size: 11px;
+    letter-spacing: 2px;
+    font-weight: 600;
+
+    color: #111111;
+}
+
+
+/* =========================================================
+   CERTIFICATE MODAL
+========================================================= */
+
+.certificate-modal {
+    position: fixed;
+    inset: 0;
+
+    z-index: 9999;
+
+    background: rgba(0, 0, 0, 0.94);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+}
+
+.certificate-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    position: relative;
+
+    max-width: 1000px;
+    max-height: 90vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    transform: scale(0.85);
+
+    transition: transform 0.4s ease;
+}
+
+.certificate-modal.active .modal-content {
+    transform: scale(1);
+}
+
+.modal-content img {
+    display: block;
+
+    max-width: 90vw;
+    max-height: 80vh;
+
+    object-fit: contain;
+
+    background: #ffffff;
+}
+
+.modal-content p {
+    color: #ffffff;
+
+    margin-top: 20px;
+
+    font-size: 13px;
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+}
+
+
+/* =========================================================
+   CLOSE BUTTON
+========================================================= */
+
+.modal-close {
+    position: absolute;
+
+    top: 25px;
+    right: 30px;
+
+    width: 50px;
+    height: 50px;
+
+    border: 1px solid rgba(255,255,255,0.4);
+
+    background: transparent;
+    color: #ffffff;
+
+    font-size: 30px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    z-index: 10;
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease;
+}
+
+.modal-close:hover {
+    background: #f5c400;
+    color: #111111;
+
+    border-color: #f5c400;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .education-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .certificates-container {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .qualification {
+        padding: 100px 6%;
+    }
+
+    .qualification-heading {
+        margin-top: 70px;
+    }
+
+    .qualification-heading div h3 {
+        font-size: 32px;
+    }
+
+    .education-container {
+        grid-template-columns: 1fr;
+    }
+
+    .education-card {
+        min-height: 270px;
+        padding: 28px;
+    }
+
+    .certificate-image {
+        height: 250px;
+    }
+
+    .certificate-content {
+        padding: 25px;
+    }
+
+    .certificate-content h3 {
+        font-size: 21px;
+    }
+
+    .certificate-modal {
+        padding: 20px;
+    }
+
+    .modal-content img {
+        max-width: 95vw;
+        max-height: 75vh;
+    }
+
+    .modal-close {
+        top: 15px;
+        right: 15px;
+
+        width: 42px;
+        height: 42px;
+    }
+
+}
 
 /* =========================================
              PROJECTS
@@ -999,6 +1501,161 @@ img {
     font-weight: 700;
 
     letter-spacing: 1.5px;
+}
+/* =========================================================
+   CURRENCY CONVERTER PROJECT
+========================================================= */
+
+.project-one {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 280px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #111111 0%,
+            #222222 60%,
+            #f5c400 60%,
+            #f5c400 100%
+        );
+
+    overflow: hidden;
+}
+
+
+/* Project number */
+
+.project-one > span {
+    position: absolute;
+
+    top: 20px;
+    right: 25px;
+
+    font-family: "Anton", sans-serif;
+    font-size: 20px;
+
+    color: #ffffff;
+}
+
+
+/* Currency icon */
+
+.project-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 150px;
+    height: 150px;
+
+    border: 3px solid #ffffff;
+
+    border-radius: 50%;
+
+    background: #111111;
+
+    color: #f5c400;
+
+    font-family: "Anton", sans-serif;
+    font-size: 35px;
+
+    box-shadow: 12px 12px 0 #ffffff;
+
+    transition: 0.4s ease;
+}
+
+
+.project-card:hover .project-icon {
+    transform: rotate(-5deg) scale(1.08);
+}
+
+
+/* GitHub link */
+
+.project-content a {
+    display: inline-block;
+
+    margin-top: 15px;
+
+    color: #111111;
+
+    font-weight: 700;
+    font-size: 12px;
+
+    letter-spacing: 1px;
+
+    text-decoration: none;
+
+    border-bottom: 2px solid #f5c400;
+
+    padding-bottom: 5px;
+
+    transition: 0.3s ease;
+}
+
+
+.project-content a:hover {
+    color: #f5c400;
+}
+/* PROJECT 2 - ROCK PAPER SCISSORS */
+
+.project-two {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 280px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #111111 0%,
+            #222222 60%,
+            #f5c400 60%,
+            #f5c400 100%
+        );
+
+    overflow: hidden;
+}
+
+.project-two > span {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+
+    font-family: "Anton", sans-serif;
+    font-size: 20px;
+    color: #fff;
+}
+
+.project-two .project-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    width: 180px;
+    height: 180px;
+
+    border: 3px solid #fff;
+    border-radius: 50%;
+
+    background: #111;
+    color: #f5c400;
+
+    font-size: 38px;
+
+    box-shadow: 12px 12px 0 #fff;
+
+    transition: .4s ease;
+}
+
+.project-card:hover .project-icon {
+    transform: rotate(-5deg) scale(1.08);
 }
 
 
@@ -1164,6 +1821,53 @@ footer a {
     font-size: 9px;
 
     letter-spacing: 1px;
+}
+/* =========================================================
+   REVEAL ANIMATIONS
+========================================================= */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-50px);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+.reveal-right {
+    opacity: 0;
+    transform: translateX(50px);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+.reveal-up {
+    opacity: 0;
+    transform: translateY(50px);
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+.reveal.visible,
+.reveal-left.visible,
+.reveal-right.visible,
+.reveal-up.visible {
+    opacity: 1;
+    transform: translate(0);
 }
 
 

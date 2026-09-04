@@ -1,268 +1,339 @@
-/* =========================================
-             LOADER
-========================================= */
-
-const loader = document.getElementById("loader");
-
-window.addEventListener("load", () => {
-
-    setTimeout(() => {
-
-        loader.classList.add("hide");
-
-    }, 700);
-
-});
+//* =========================================================
+  
 
 
+document.addEventListener("DOMContentLoaded", () => {
 
-/* =========================================
-             HEADER
-========================================= */
+    /* =====================================================
+       LOADER
+    ===================================================== */
 
-const header = document.getElementById("header");
+    const loader = document.getElementById("loader");
 
-window.addEventListener("scroll", () => {
+    window.addEventListener("load", () => {
 
-    if (window.scrollY > 50) {
+        setTimeout(() => {
 
-        header.classList.add("scrolled");
+            if (loader) {
+                loader.classList.add("hide");
+            }
 
-    } else {
-
-        header.classList.remove("scrolled");
-
-    }
-
-});
-
-
-
-/* =========================================
-             MOBILE MENU
-========================================= */
-
-const menuBtn =
-    document.getElementById("menuBtn");
-
-const navbar =
-    document.getElementById("navbar");
-
-
-menuBtn.addEventListener("click", () => {
-
-    navbar.classList.toggle("open");
-
-});
-
-
-/* Close menu after clicking */
-
-const navLinks =
-    document.querySelectorAll(".nav-link");
-
-
-navLinks.forEach((link) => {
-
-    link.addEventListener("click", () => {
-
-        navbar.classList.remove("open");
+        }, 700);
 
     });
 
-});
+
+    /* =====================================================
+       MOBILE MENU
+    ===================================================== */
+
+    const menuBtn = document.getElementById("menuBtn");
+    const navbar = document.getElementById("navbar");
+
+    if (menuBtn && navbar) {
+
+        menuBtn.addEventListener("click", () => {
+
+            navbar.classList.toggle("open");
+            menuBtn.classList.toggle("active");
+
+        });
 
 
+        document.querySelectorAll(".nav-link").forEach(link => {
 
-/* =========================================
-             SCROLL ANIMATION
-========================================= */
+            link.addEventListener("click", () => {
 
-const animatedElements =
-    document.querySelectorAll(
-        ".reveal, .reveal-up, .reveal-left, .reveal-right"
+                navbar.classList.remove("open");
+                menuBtn.classList.remove("active");
+
+            });
+
+        });
+
+    }
+
+
+    /* =====================================================
+       ACTIVE NAVIGATION
+    ===================================================== */
+
+    const sections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll(".nav-link");
+
+
+    function updateActiveNavigation() {
+
+        let currentSection = "";
+
+        sections.forEach(section => {
+
+            const sectionTop = section.offsetTop - 250;
+            const sectionHeight = section.offsetHeight;
+
+            if (
+                window.scrollY >= sectionTop &&
+                window.scrollY < sectionTop + sectionHeight
+            ) {
+
+                currentSection = section.getAttribute("id");
+
+            }
+
+        });
+
+
+        navLinks.forEach(link => {
+
+            link.classList.remove("active");
+
+            if (
+                link.getAttribute("href") === "#" + currentSection
+            ) {
+
+                link.classList.add("active");
+
+            }
+
+        });
+
+    }
+
+
+    window.addEventListener("scroll", updateActiveNavigation);
+
+    updateActiveNavigation();
+
+
+    /* =====================================================
+       SCROLL REVEAL
+    ===================================================== */
+
+    const revealElements = document.querySelectorAll(
+        ".reveal, .reveal-left, .reveal-right, .reveal-up"
     );
 
 
-const animationObserver =
-    new IntersectionObserver(
+    const revealObserver = new IntersectionObserver(
+        (entries, observer) => {
 
-        (entries) => {
-
-            entries.forEach((entry) => {
+            entries.forEach(entry => {
 
                 if (entry.isIntersecting) {
 
                     entry.target.classList.add("show");
 
-                    animationObserver.unobserve(
-                        entry.target
-                    );
+                    observer.unobserve(entry.target);
 
                 }
 
             });
 
         },
-
         {
             threshold: 0.15
         }
-
     );
 
 
-animatedElements.forEach((element) => {
+    revealElements.forEach(element => {
 
-    animationObserver.observe(element);
+        revealObserver.observe(element);
 
-});
-
-
-
-/* =========================================
-             ACTIVE NAVIGATION
-========================================= */
-
-const sections =
-    document.querySelectorAll("section[id]");
+    });
 
 
-const activeObserver =
-    new IntersectionObserver(
+    /* =====================================================
+       CERTIFICATE LIGHTBOX
+    ===================================================== */
 
-        (entries) => {
+    const certificateModal =
+        document.getElementById("certificateModal");
 
-            entries.forEach((entry) => {
+    const modalImage =
+        document.getElementById("modalImage");
 
-                if (entry.isIntersecting) {
+    const modalTitle =
+        document.getElementById("modalTitle");
 
-                    navLinks.forEach((link) => {
+    const modalClose =
+        document.getElementById("modalClose");
 
-                        link.classList.remove("active");
-
-                    });
-
-
-                    const activeLink =
-                        document.querySelector(
-                            `.nav-link[href="#${entry.target.id}"]`
-                        );
+    const certificateButtons =
+        document.querySelectorAll(".certificate-view");
 
 
-                    if (activeLink) {
+    certificateButtons.forEach(button => {
 
-                        activeLink.classList.add("active");
+        button.addEventListener("click", () => {
 
-                    }
+            const image =
+                button.getAttribute("data-image");
 
-                }
-
-            });
-
-        },
-
-        {
-            threshold: 0.45
-        }
-
-    );
+            const title =
+                button.getAttribute("data-title");
 
 
-sections.forEach((section) => {
-
-    activeObserver.observe(section);
-
-});
-
+            if (modalImage) {
+                modalImage.src = image;
+                modalImage.alt = title;
+            }
 
 
-/* =========================================
-             CONTACT FORM
-========================================= */
-
-const contactForm =
-    document.getElementById("contactForm");
+            if (modalTitle) {
+                modalTitle.textContent = title;
+            }
 
 
-const formMessage =
-    document.getElementById("formMessage");
+            if (certificateModal) {
+                certificateModal.classList.add("active");
+                document.body.classList.add("modal-open");
+            }
+
+        });
+
+    });
 
 
-contactForm.addEventListener(
-    "submit",
-    (event) => {
+    /* =====================================================
+       CLOSE CERTIFICATE
+    ===================================================== */
 
-        event.preventDefault();
+    function closeCertificate() {
 
+        if (!certificateModal) return;
 
-        const name =
-            document.getElementById("name").value.trim();
+        certificateModal.classList.remove("active");
 
-
-        const email =
-            document.getElementById("email").value.trim();
-
-
-        const message =
-            document.getElementById("message").value.trim();
-
-
-        if (
-            name === "" ||
-            email === "" ||
-            message === ""
-        ) {
-
-            formMessage.textContent =
-                "Please fill all fields.";
-
-            return;
-
-        }
-
-
-        formMessage.textContent =
-            `Thank you ${name}! Your message has been received.`;
-
-
-        contactForm.reset();
+        document.body.classList.remove("modal-open");
 
     }
-);
 
 
+    if (modalClose) {
 
-/* =========================================
-             SMOOTH SCROLL
-========================================= */
+        modalClose.addEventListener(
+            "click",
+            closeCertificate
+        );
 
-document.querySelectorAll(
-    'a[href^="#"]'
-).forEach((link) => {
-
-    link.addEventListener("click", (event) => {
-
-        const target =
-            document.querySelector(
-                link.getAttribute("href")
-            );
+    }
 
 
-        if (target) {
+    /* Close when clicking outside image */
+
+    if (certificateModal) {
+
+        certificateModal.addEventListener("click", event => {
+
+            if (event.target === certificateModal) {
+
+                closeCertificate();
+
+            }
+
+        });
+
+    }
+
+
+    /* Close with ESC */
+
+    document.addEventListener("keydown", event => {
+
+        if (event.key === "Escape") {
+
+            closeCertificate();
+
+        }
+
+    });
+
+
+    /* =====================================================
+       CONTACT FORM
+    ===================================================== */
+
+    const contactForm =
+        document.getElementById("contactForm");
+
+    const formMessage =
+        document.getElementById("formMessage");
+
+
+    if (contactForm) {
+
+        contactForm.addEventListener("submit", event => {
 
             event.preventDefault();
 
 
-            target.scrollIntoView({
+            const name =
+                document.getElementById("name").value.trim();
 
-                behavior: "smooth",
+            const email =
+                document.getElementById("email").value.trim();
 
-                block: "start"
+            const message =
+                document.getElementById("message").value.trim();
 
-            });
 
-        }
+            if (!name || !email || !message) {
+
+                if (formMessage) {
+
+                    formMessage.textContent =
+                        "Please fill in all fields.";
+
+                }
+
+                return;
+
+            }
+
+
+            if (formMessage) {
+
+                formMessage.textContent =
+                    "Thank you! Your message has been received.";
+
+            }
+
+
+            contactForm.reset();
+
+        });
+
+    }
+
+
+    /* =====================================================
+       SMOOTH SCROLL
+    ===================================================== */
+
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+
+        link.addEventListener("click", event => {
+
+            const targetId =
+                link.getAttribute("href");
+
+            const target =
+                document.querySelector(targetId);
+
+
+            if (target) {
+
+                event.preventDefault();
+
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            }
+
+        });
 
     });
 
